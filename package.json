@@ -339,8 +339,9 @@
   },
   "engines": {
     "node": "^18.17.1",
-    "npm": "please-use-yarn",
-    "yarn": ">=4.0.2"
+    "npm": ">=10.0",
+    "yarn": ">=4.0.2",
+    "npx": ">=10.0"
   },
   "license": "AGPL-3.0",
   "name": "twenty",

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 
 import { WorkspaceQueryBuilderOptions } from 'src/engine/api/graphql/workspace-query-builder/interfaces/workspace-query-builder-options.interface';
 import {
@@ -43,7 +44,7 @@ export class WorkspaceQueryBuilderFactory {
     private readonly deleteOneQueryFactory: DeleteOneQueryFactory,
     private readonly updateManyQueryFactory: UpdateManyQueryFactory,
     private readonly deleteManyQueryFactory: DeleteManyQueryFactory,
-  ) {}
+  ) { }
 
   findMany<
     Filter extends RecordFilter = RecordFilter,

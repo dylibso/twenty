@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-
+import { HostContext } from './host-context'
+import { getXtpClient } from './xtp-client';
 import isEmpty from 'lodash.isempty';
 import { DataSource, In } from 'typeorm';
 
@@ -63,6 +64,8 @@ import {
   computePgGraphQLError,
 } from './utils/compute-pg-graphql-error.util';
 
+const logger = new Logger('Extism');
+
 @Injectable()
 export class WorkspaceQueryRunnerService {
   private readonly logger = new Logger(WorkspaceQueryRunnerService.name);
@@ -79,7 +82,7 @@ export class WorkspaceQueryRunnerService {
     private readonly workspaceQueryHookService: WorkspaceQueryHookService,
     private readonly environmentService: EnvironmentService,
     private readonly duplicateService: DuplicateService,
-  ) {}
+  ) { }
 
   async findDuplicates<TRecord extends IRecord = IRecord>(
     args: FindDuplicatesResolverArgs<Partial<TRecord>>,
@@ -247,10 +250,10 @@ export class WorkspaceQueryRunnerService {
     const existingRecords =
       ids.length > 0
         ? await this.duplicateService.findExistingRecords(
-            ids as string[],
-            options.objectMetadataItem,
-            options.authContext.workspace.id,
-          )
+          ids as string[],
+          options.objectMetadataItem,
+          options.authContext.workspace.id,
+        )
         : [];
 
     const existingRecordsMap = new Map(
@@ -331,13 +334,41 @@ export class WorkspaceQueryRunnerService {
       );
     }
 
-    const hookedArgs =
+    let hookedArgs =
       await this.workspaceQueryHookService.executePreQueryHooks(
         authContext,
         objectMetadataItem.nameSingular,
         'updateOne',
         args,
       );
+
+    const client = await getXtpClient()
+
+    let objectName = objectMetadataItem.nameSingular
+    objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
+
+    this.logger.log(`Object name: ${objectName}`)
+
+    const epName = String(process.env.XTP_EXT_POINT)
+    let func = client.extensionPoints[epName][`before${objectName}Update`]
+    if (func) {
+      this.logger.log(`Plugin func exists`)
+      this.logger.log(hookedArgs)
+      const result = await func(
+        String(process.env.XTP_GUEST_KEY),
+        { task: existingRecord, change: hookedArgs.data },
+        {
+          bindingName: 'default', // optional item from the list of names we got in the following step
+          default: null, // can be an object, Uint8Array, or string
+          hostContext: new HostContext(authContext),
+        }
+      )
+      logger.log('Result')
+      logger.log(result)
+      if (result) hookedArgs.data = result
+    } else {
+      this.logger.log(`Plugin func does not exist`)
+    }
 
     const query = await this.workspaceQueryBuilderFactory.updateOne(
       hookedArgs,
@@ -360,6 +391,26 @@ export class WorkspaceQueryRunnerService {
       CallWebhookJobsJobOperation.update,
       options,
     );
+
+    func = client.extensionPoints.TwentyLifecyclePlugin[`after${objectName}Update`]
+    if (func) {
+      this.logger.log(`Plugin func exists`)
+      this.logger.log(hookedArgs)
+      const result = await func(
+        'b5888aa0-e660-470c-9a0c-4f11357b1907',
+        { task: existingRecord, change: hookedArgs.data },
+        {
+          bindingName: 'default', // optional item from the list of names we got in the following step
+          default: null, // can be an object, Uint8Array, or string
+          hostContext: new HostContext(authContext),
+        }
+      )
+      logger.log('Result')
+      logger.log(result)
+      if (result) hookedArgs.data = result.change
+    } else {
+      this.logger.log(`Plugin func does not exist`)
+    }
 
     this.workspaceEventEmitter.emit(
       `${objectMetadataItem.nameSingular}.updated`,
@@ -874,13 +925,13 @@ export class WorkspaceQueryRunnerService {
     const result = !isMultiQuery
       ? graphqlResult?.[0]?.resolve?.data?.[entityKey]
       : Object.keys(graphqlResult?.[0]?.resolve?.data).reduce(
-          (acc: IRecord[], dataItem, index) => {
-            acc.push(graphqlResult?.[0]?.resolve?.data[`${entityKey}${index}`]);
+        (acc: IRecord[], dataItem, index) => {
+          acc.push(graphqlResult?.[0]?.resolve?.data[`${entityKey}${index}`]);
 
-            return acc;
-          },
-          [],
-        );
+          return acc;
+        },
+        [],
+      );
     const errors = graphqlResult?.[0]?.resolve?.errors;
 
     if (

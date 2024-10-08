@@ -1,5 +1,4 @@
 import { Injectable, Type } from '@nestjs/common';
-
 import { ObjectLiteral } from 'typeorm';
 
 import { WorkspaceDatasourceFactory } from 'src/engine/twenty-orm/factories/workspace-datasource.factory';
@@ -10,7 +9,7 @@ import { convertClassNameToObjectMetadataName } from 'src/engine/workspace-manag
 export class TwentyORMGlobalManager {
   constructor(
     private readonly workspaceDataSourceFactory: WorkspaceDatasourceFactory,
-  ) {}
+  ) { }
 
   async getRepositoryForWorkspace<T extends ObjectLiteral>(
     workspaceId: string,

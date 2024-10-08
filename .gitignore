@@ -29,3 +29,5 @@ storybook-static
 .nyc_output
 test-results/
 dump.rdb
+
+.xtp

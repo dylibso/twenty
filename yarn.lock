@@ -4166,6 +4166,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dylibso/xtp@npm:^0.0.0-rc9":
+  version: 0.0.0-rc9
+  resolution: "@dylibso/xtp@npm:0.0.0-rc9"
+  dependencies:
+    "@extism/extism": "npm:^2.0.0-rc3"
+    cacache: "npm:^18.0.2"
+  checksum: 10c0/5ad7c35154776ea992b2324577ee5c6e73b0b0d7a2d367e421c52134d9659c72c422c7a3f9a51a8ce49d7dfe47ad9197cb204a15d6e68f942985511ae434764b
+  languageName: node
+  linkType: hard
+
 "@emoji-mart/data@npm:^1.2.1":
   version: 1.2.1
   resolution: "@emoji-mart/data@npm:1.2.1"
@@ -5079,6 +5089,13 @@ __metadata:
   version: 8.57.0
   resolution: "@eslint/js@npm:8.57.0"
   checksum: 10c0/9a518bb8625ba3350613903a6d8c622352ab0c6557a59fe6ff6178bf882bf57123f9d92aa826ee8ac3ee74b9c6203fe630e9ee00efb03d753962dcf65ee4bd94
+  languageName: node
+  linkType: hard
+
+"@extism/extism@npm:^2.0.0-rc3":
+  version: 2.0.0-rc8
+  resolution: "@extism/extism@npm:2.0.0-rc8"
+  checksum: 10c0/0f08d734b4ec4826c7c0114c7b7cb43391706ecc4515f4d6cba551e234ef35d34df2cbe426da49b6a44ad5f082de1d5d460d5df2923ae9554036686af4fdcd35
   languageName: node
   linkType: hard
 
@@ -17345,6 +17362,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/qs@npm:^6":
+  version: 6.9.16
+  resolution: "@types/qs@npm:6.9.16"
+  checksum: 10c0/a4e871b80fff623755e356fd1f225aea45ff7a29da30f99fddee1a05f4f5f33485b314ab5758145144ed45708f97e44595aa9a8368e9bbc083932f931b12dbb6
+  languageName: node
+  linkType: hard
+
 "@types/range-parser@npm:*":
   version: 1.2.7
   resolution: "@types/range-parser@npm:1.2.7"
@@ -21889,7 +21913,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cacache@npm:^18.0.0":
+"cacache@npm:^18.0.0, cacache@npm:^18.0.2":
   version: 18.0.4
   resolution: "cacache@npm:18.0.4"
   dependencies:
@@ -41881,7 +41905,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.10.0, qs@npm:^6.10.1, qs@npm:^6.11.0, qs@npm:^6.11.2, qs@npm:^6.12.3, qs@npm:^6.4.0, qs@npm:^6.7.0":
+"qs@npm:^6.10.0, qs@npm:^6.10.1, qs@npm:^6.11.0, qs@npm:^6.11.2, qs@npm:^6.12.3, qs@npm:^6.13.0, qs@npm:^6.4.0, qs@npm:^6.7.0":
   version: 6.13.0
   resolution: "qs@npm:6.13.0"
   dependencies:
@@ -47474,6 +47498,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "twenty-server@workspace:packages/twenty-server"
   dependencies:
+    "@dylibso/xtp": "npm:^0.0.0-rc9"
     "@esbuild-plugins/node-modules-polyfill": "npm:^0.2.2"
     "@graphql-yoga/nestjs": "patch:@graphql-yoga/nestjs@2.1.0#./patches/@graphql-yoga+nestjs+2.1.0.patch"
     "@langchain/mistralai": "npm:^0.0.24"
@@ -47498,6 +47523,7 @@ __metadata:
     "@types/lodash.uniq": "npm:^4.5.9"
     "@types/lodash.uniqby": "npm:^4.7.9"
     "@types/lodash.upperfirst": "npm:^4.3.7"
+    "@types/qs": "npm:^6"
     "@types/react": "npm:^18.2.39"
     "@types/unzipper": "npm:^0"
     cache-manager: "npm:^5.4.0"
@@ -47518,6 +47544,7 @@ __metadata:
     monaco-editor-auto-typings: "npm:^0.4.5"
     passport: "npm:^0.7.0"
     psl: "npm:^1.9.0"
+    qs: "npm:^6.13.0"
     rimraf: "npm:^5.0.5"
     tsconfig-paths: "npm:^4.2.0"
     typeorm: "patch:typeorm@0.3.20#./patches/typeorm+0.3.20.patch"
