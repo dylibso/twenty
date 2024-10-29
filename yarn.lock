@@ -16895,6 +16895,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/uuid@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "@types/uuid@npm:10.0.0"
+  checksum: 10c0/9a1404bf287164481cb9b97f6bb638f78f955be57c40c6513b7655160beb29df6f84c915aaf4089a1559c216557dc4d2f79b48d978742d3ae10b937420ddac60
+  languageName: node
+  linkType: hard
+
 "@types/uuid@npm:^9.0.1, @types/uuid@npm:^9.0.2":
   version: 9.0.8
   resolution: "@types/uuid@npm:9.0.8"
@@ -32106,9 +32113,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"langchain@npm:^0.2.6":
-  version: 0.2.13
-  resolution: "langchain@npm:0.2.13"
+"langchain@npm:^0.2.19":
+  version: 0.2.20
+  resolution: "langchain@npm:0.2.20"
   dependencies:
     "@langchain/core": "npm:>=0.2.21 <0.3.0"
     "@langchain/openai": "npm:>=0.1.0 <0.3.0"
@@ -32117,7 +32124,7 @@ __metadata:
     js-tiktoken: "npm:^1.0.12"
     js-yaml: "npm:^4.1.0"
     jsonpointer: "npm:^5.0.1"
-    langsmith: "npm:~0.1.40"
+    langsmith: "npm:^0.1.56-rc.1"
     openapi-types: "npm:^12.1.3"
     p-retry: "npm:4"
     uuid: "npm:^10.0.0"
@@ -32137,7 +32144,6 @@ __metadata:
     "@langchain/anthropic": "*"
     "@langchain/aws": "*"
     "@langchain/cohere": "*"
-    "@langchain/community": "*"
     "@langchain/google-genai": "*"
     "@langchain/google-vertexai": "*"
     "@langchain/groq": "*"
@@ -32173,7 +32179,7 @@ __metadata:
     peggy: ^3.0.2
     playwright: "*"
     puppeteer: "*"
-    pyodide: ^0.24.1
+    pyodide: ">=0.24.1 <0.27.0"
     redis: "*"
     sonix-speech-recognition: "*"
     srt-parser-2: "*"
@@ -32207,8 +32213,6 @@ __metadata:
     "@langchain/aws":
       optional: true
     "@langchain/cohere":
-      optional: true
-    "@langchain/community":
       optional: true
     "@langchain/google-genai":
       optional: true
@@ -32302,7 +32306,7 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 10c0/e538ad80a457041f3494e4e0322e0a537496485b9620ed0288654eb88b38c3a9b698a27f22195298d68b32ca38442f009e7def265e9d44bf2bab7471b75ebd67
+  checksum: 10c0/37e96357bbba4ed1c1c185408ea1bfb871b8e8b4f151e74850d0f0748f8a5fa27ea7646fbc02b815b1d64bf05ecf59aabb52a695d1f5f2e864f80ff94cb38d24
   languageName: node
   linkType: hard
 
@@ -32336,7 +32340,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"langsmith@npm:~0.1.39, langsmith@npm:~0.1.40":
+"langsmith@npm:^0.1.56-rc.1":
+  version: 0.1.68
+  resolution: "langsmith@npm:0.1.68"
+  dependencies:
+    "@types/uuid": "npm:^10.0.0"
+    commander: "npm:^10.0.1"
+    p-queue: "npm:^6.6.2"
+    p-retry: "npm:4"
+    semver: "npm:^7.6.3"
+    uuid: "npm:^10.0.0"
+  peerDependencies:
+    openai: "*"
+  peerDependenciesMeta:
+    openai:
+      optional: true
+  checksum: 10c0/ec5f70155ce7c95f2326a3d38b313c404debe954890c1623aa07be3db25aa3d7f5381267ed5f456a2bd814ab7bdebdf467ad5dc89bbc78bcc74f5a60e93c09c1
+  languageName: node
+  linkType: hard
+
+"langsmith@npm:~0.1.39":
   version: 0.1.41
   resolution: "langsmith@npm:0.1.41"
   dependencies:
@@ -43750,7 +43773,7 @@ __metadata:
     handlebars: "npm:^4.7.8"
     jsdom: "npm:~22.1.0"
     jwt-decode: "npm:^4.0.0"
-    langchain: "npm:^0.2.6"
+    langchain: "npm:^0.2.19"
     langfuse-langchain: "npm:^3.11.2"
     lodash.differencewith: "npm:^4.5.0"
     lodash.merge: "npm:^4.6.2"
