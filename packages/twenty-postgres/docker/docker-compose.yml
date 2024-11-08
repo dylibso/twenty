@@ -2,7 +2,7 @@ version: "3.9"
 services:
   postgres:
     container_name: twenty_postgres
-    image: twentycrm/twenty-postgres:latest
+    image: twentycrm/twenty-postgres:v0.31.2
     volumes:
     - twenty_db_data:/var/lib/postgresql/data
     environment:
