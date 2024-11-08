@@ -354,9 +354,10 @@ export class WorkspaceQueryRunnerService {
     if (func) {
       this.logger.log(`Plugin func exists`)
       this.logger.log(hookedArgs)
+      this.logger.log(existingRecord)
       const result = await func(
         String(process.env.XTP_GUEST_KEY),
-        { task: existingRecord, change: hookedArgs.data },
+        { original: existingRecord, change: hookedArgs.data },
         {
           bindingName: 'default', // optional item from the list of names we got in the following step
           default: null, // can be an object, Uint8Array, or string
@@ -396,9 +397,10 @@ export class WorkspaceQueryRunnerService {
     if (func) {
       this.logger.log(`Plugin func exists`)
       this.logger.log(hookedArgs)
+      this.logger.log(existingRecord)
       const result = await func(
-        'b5888aa0-e660-470c-9a0c-4f11357b1907',
-        { task: existingRecord, change: hookedArgs.data },
+        String(process.env.XTP_GUEST_KEY),
+        { original: existingRecord, change: hookedArgs.data },
         {
           bindingName: 'default', // optional item from the list of names we got in the following step
           default: null, // can be an object, Uint8Array, or string
@@ -407,7 +409,6 @@ export class WorkspaceQueryRunnerService {
       )
       logger.log('Result')
       logger.log(result)
-      if (result) hookedArgs.data = result.change
     } else {
       this.logger.log(`Plugin func does not exist`)
     }
