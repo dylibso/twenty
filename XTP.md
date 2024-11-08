@@ -43,7 +43,7 @@ Run front and backend like this
 npx nx start
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3001](http://localhost:3001)
 
 
 You can find the extension point schema at [./twenty-xtp.yaml](./twenty-xtp.yaml).
